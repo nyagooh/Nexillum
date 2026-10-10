@@ -1,4 +1,4 @@
-import { AudienceLink } from "../Audience";
+import { Clouds } from "../Clouds";
 import { ArrowDot } from "../ui";
 import { RotatingPill } from "./RotatingPill";
 import { TileStrip } from "./TileStrip";
@@ -7,35 +7,27 @@ import { TileStrip } from "./TileStrip";
 export function HeroPills() {
   return (
     <section className="hero hero--light hp" id="top">
-      <svg className="hero__arcs" viewBox="0 0 1000 1000" aria-hidden="true">
-        {Array.from({ length: 9 }, (_, i) => (
-          <circle key={i} cx="1000" cy="1000" r={260 + i * 90} />
-        ))}
-      </svg>
+      <Clouds set="hero" />
 
       <div className="hp__body wrap">
         <p className="eyebrow-dot rise" style={{ "--d": "0s" } as React.CSSProperties}>
-          <i aria-hidden="true" /> We are Nexillum, a cloud consultancy built from Africa.
+          <i aria-hidden="true" /> We are Nexillum, the cloud partner for startups.
         </p>
 
         <h1 className="hp__title">
           <span className="line"><span style={{ "--d": ".08s" } as React.CSSProperties}>
             Same cloud.{" "}
-            <RotatingPill words={["Higher possibilities", "Broader horizons", "More builders"]} className="hpill--ink" />
+            <RotatingPill words={["Higher possibilities", "More room to build", "More builders"]} className="hpill--ink" />
           </span></span>
-          <span className="line"><span style={{ "--d": ".16s" } as React.CSSProperties}>Built from Africa,</span></span>
+          <span className="line"><span style={{ "--d": ".16s" } as React.CSSProperties}>AWS credits and cloud</span></span>
           <span className="line"><span style={{ "--d": ".24s" } as React.CSSProperties}>
-            for <span className="hpill hpill--outline pop">the world.</span>
+            services for <span className="hpill hpill--outline pop">startups.</span>
           </span></span>
         </h1>
 
         <div className="hp__ctas rise" style={{ "--d": ".4s" } as React.CSSProperties}>
-          <AudienceLink audience="founder" className="pill pill--lime pill--lg">
-            I’m a founder <ArrowDot />
-          </AudienceLink>
-          <AudienceLink audience="org" className="pill pill--line pill--lg">
-            I’m an organisation <ArrowDot />
-          </AudienceLink>
+          <a href="#contact" className="pill pill--lime pill--lg">Apply for AWS credits <ArrowDot /></a>
+          <a href="#contact" className="pill pill--line pill--lg">Talk to an engineer <ArrowDot /></a>
         </div>
       </div>
 

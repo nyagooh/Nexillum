@@ -23,6 +23,28 @@ export function BrandDefs() {
           <circle cx="712" cy="677" r="146" />
           <rect x="340" y="600" width="372" height="223" />
         </g>
+        {/* Clay: blur the silhouette into a height map, light it, add a soft highlight */}
+        {[
+          { id: "clay", blur: 12, depth: 9 },
+          { id: "clay-sm", blur: 5, depth: 5 },
+        ].map((f) => (
+          <filter key={f.id} id={f.id} x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+            <feGaussianBlur in="SourceAlpha" stdDeviation={f.blur} result="h" />
+            <feDiffuseLighting in="h" surfaceScale={f.depth} diffuseConstant="1.25" lightingColor="#fff" result="d">
+              <feDistantLight azimuth="225" elevation="52" />
+            </feDiffuseLighting>
+            <feComposite in="SourceGraphic" in2="d" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="shade" />
+            <feSpecularLighting in="h" surfaceScale={f.depth} specularConstant=".5" specularExponent="24" lightingColor="#fff" result="s">
+              <feDistantLight azimuth="225" elevation="58" />
+            </feSpecularLighting>
+            <feComposite in="s" in2="SourceAlpha" operator="in" result="s2" />
+            <feComposite in="shade" in2="s2" operator="arithmetic" k1="0" k2="1" k3=".6" k4="0" result="lit" />
+            <feComposite in="lit" in2="SourceAlpha" operator="in" />
+          </filter>
+        ))}
+        <filter id="clay-shadow" x="-30%" y="-100%" width="160%" height="300%">
+          <feGaussianBlur stdDeviation="14" />
+        </filter>
         <symbol id="nx-mark" viewBox="218 380 644 446">
           <use href="#nx-cloud" mask="url(#nx-gap)" />
         </symbol>

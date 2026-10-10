@@ -9,7 +9,7 @@ const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", style: 
 export const metadata: Metadata = {
   title: "Nexillum — Same cloud. Higher possibilities.",
   description:
-    "Nexillum is a technology consultancy built from Africa. AWS architecture, cloud credits and expert support for African startups — and a technically fluent partner for organisations building into Africa.",
+    "Nexillum helps startups build on AWS: Activate credit support, cloud architecture, migration, DevOps and cost optimisation.",
 };
 
 export const viewport: Viewport = {

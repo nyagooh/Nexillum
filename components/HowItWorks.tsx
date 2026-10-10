@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { AudienceLink } from "./Audience";
 import { SectionLabel } from "./ui";
+import { Clouds } from "./Clouds";
 
 const STEPS = [
   {
@@ -28,8 +28,8 @@ const STEPS = [
   },
   {
     tag: "Scale",
-    line: "Support as you grow, go regional and go global.",
-    more: "Cost reviews, performance work and introductions across the bridge when you’re ready for new markets.",
+    line: "Support as you grow and scale.",
+    more: "Cost reviews, performance work and architecture for your next stage of growth.",
   },
 ];
 
@@ -38,9 +38,10 @@ export function HowItWorks() {
 
   return (
     <section className="section section--dark" id="how">
+      <Clouds tone="dark" set="b" />
       <div className="wrap">
         <div className="reveal">
-          <SectionLabel no="03">Founder programme</SectionLabel>
+          <SectionLabel no="04">Startup programme</SectionLabel>
           <h2 className="h2 h2--xl">How it works</h2>
         </div>
 
@@ -75,8 +76,8 @@ export function HowItWorks() {
 
         <div className="accel reveal">
           <span className="mono accel__badge">Coming soon</span>
-          <p><strong>Nexillum Startup Accelerator.</strong> A cohort programme for African cloud-native founders.</p>
-          <AudienceLink audience="founder" className="link-arrow link-arrow--light">Get notified →</AudienceLink>
+          <p><strong>Nexillum Startup Accelerator.</strong> A cohort programme for cloud-native startups.</p>
+          <a href="#contact" className="link-arrow link-arrow--light">Get notified →</a>
         </div>
       </div>
     </section>

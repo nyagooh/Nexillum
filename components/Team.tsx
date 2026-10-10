@@ -5,7 +5,7 @@ import { ArrowDot, SectionLabel } from "./ui";
 const PEOPLE = [
   { name: "Name Surname", role: "Founder & CEO" },
   { name: "Name Surname", role: "Head of Cloud Engineering" },
-  { name: "Name Surname", role: "Partnerships & Markets" },
+  { name: "Name Surname", role: "Solutions Architect" },
 ];
 
 export function Team() {
@@ -13,8 +13,8 @@ export function Team() {
     <section className="section section--dark section--flush" id="team">
       <div className="wrap">
         <div className="reveal">
-          <SectionLabel no="04">Leadership</SectionLabel>
-          <h2 className="h2">Two fluencies. One team. Boardroom and grassroots.</h2>
+          <SectionLabel no="05">Team</SectionLabel>
+          <h2 className="h2">The engineers behind your cloud.</h2>
         </div>
         <div className="people">
           {PEOPLE.map((p) => (

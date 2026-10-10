@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { Mark } from "./BrandDefs";
 import { ArrowDot } from "./ui";
 
-const DARK = ".hero--dark, .section--dark, .bigticker, .contact, .footer";
+const DARK = ".hero--dark, .section--dark, .band, .contact, .footer, [data-dark]";
 
 const LINKS = [
+  { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: "#paths", label: "Who we serve" },
   { href: "#how", label: "How it works" },
   { href: "#team", label: "Team" },
 ];
@@ -28,13 +28,17 @@ export function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    // Hero variants swap in place on /heroes, so re-check when the DOM changes
-    const mo = new MutationObserver(onScroll);
-    mo.observe(document.querySelector("main") ?? document.body, { childList: true });
+    // Variants swap whole pages in place on /heroes, so re-check (once per frame) when the DOM changes
+    let pending = 0;
+    const mo = new MutationObserver(() => {
+      if (!pending) pending = requestAnimationFrame(() => { pending = 0; onScroll(); });
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       mo.disconnect();
+      cancelAnimationFrame(pending);
     };
   }, []);
 

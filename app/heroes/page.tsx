@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AudienceProvider } from "@/components/Audience";
 import { BrandDefs } from "@/components/BrandDefs";
+import { Footer } from "@/components/Footer";
 import { HEROES } from "@/components/heroes";
+import { Landing } from "@/components/Landing";
 import { Nav } from "@/components/Nav";
+import { RevealObserver } from "@/components/RevealObserver";
 
-/** Hero comparison: one variant at a time, switch with the dock or ← → keys. Deep link with #a … #d. */
+/** Full-page comparison: each hero variant above the same landing page. Switch with the dock or ← → keys; deep link with #a … #e. */
 export default function HeroesPage() {
   const [i, setI] = useState(0);
 
@@ -26,19 +28,19 @@ export default function HeroesPage() {
     window.scrollTo(0, 0);
   }, [i]);
 
-  const { Component } = HEROES[i];
+  const { id, Component } = HEROES[i];
 
   return (
-    <AudienceProvider>
+    <>
       <BrandDefs />
       <Nav />
-      <main>
-        <Component key={HEROES[i].id} />
-        {/* Room to scroll, so scroll-driven variants can be tried */}
-        <div className="heroes__spacer">
-          <p className="mono">Rest of the page continues here ↓</p>
-        </div>
+      {/* Keyed so each variant mounts fresh, with its own reveals and scroll effects */}
+      <main key={id}>
+        <Component />
+        <Landing />
       </main>
+      <Footer />
+      <RevealObserver />
 
       <div className="dock" role="tablist" aria-label="Hero variants">
         <p className="dock__note">{HEROES[i].note}</p>
@@ -50,6 +52,6 @@ export default function HeroesPage() {
           ))}
         </div>
       </div>
-    </AudienceProvider>
+    </>
   );
 }
